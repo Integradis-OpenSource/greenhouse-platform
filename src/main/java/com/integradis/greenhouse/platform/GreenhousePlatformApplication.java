@@ -1,4 +1,4 @@
-package com.greenhouse.platform;
+package com.integradis.greenhouse.platform;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
