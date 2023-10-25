@@ -1,20 +1,15 @@
 package com.integradis.greenhouse.platform.crops.domain.model.entities;
 
 import com.integradis.greenhouse.platform.crops.domain.model.aggregates.Crop;
+import com.integradis.greenhouse.platform.crops.domain.model.valueobjects.CropPhase;
 import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.util.Date;
 
 @Entity
-public class Formula {
-    @Id
-    @Getter
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private int day;
-    private Date date;
-    private Date time;
+public class Formula extends CropEntry {
+
     private int hay;
     private int corn;
     private int guano;
@@ -24,16 +19,12 @@ public class Formula {
     private int urea;
     private int ammoniumSulphate;
 
-    @Getter
-    @ManyToOne
-    @JoinColumn(name = "crop_id")
-    private Crop crop;
-
-    public Formula(Crop crop){
-        this.crop = crop;
+    public Formula(){
+        this.cropPhase = CropPhase.FORMULA;
     }
 
-    public Formula(){
-
+    public Formula(String author, Long nextItemId){
+        super(author, nextItemId);
+        this.cropPhase = CropPhase.FORMULA;
     }
 }

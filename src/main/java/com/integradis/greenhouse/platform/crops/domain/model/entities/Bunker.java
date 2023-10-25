@@ -1,20 +1,14 @@
 package com.integradis.greenhouse.platform.crops.domain.model.entities;
 
 import com.integradis.greenhouse.platform.crops.domain.model.aggregates.Crop;
+import com.integradis.greenhouse.platform.crops.domain.model.valueobjects.CropPhase;
 import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.util.Date;
 
 @Entity
-public class Bunker {
-    @Id
-    @Getter
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private int day;
-    private Date date;
-    private Date time;
+public class Bunker extends CropEntry{
     private int thermocoupleOne;
     private int thermocoupleTwo;
     private int thermocoupleThree;
@@ -22,15 +16,11 @@ public class Bunker {
     private int motorFrequency;
     private String comment;
 
-    @Getter
-    @ManyToOne
-    @JoinColumn(name = "crop_id")
-    private Crop crop;
-
     public Bunker() {
-
+        this.cropPhase = CropPhase.BUNKER;
     }
-    public Bunker(Crop crop){
-        this.crop = crop;
+    public Bunker(String author, Long nextItemId){
+        super(author, nextItemId);
+        this.cropPhase = CropPhase.BUNKER;
     }
 }

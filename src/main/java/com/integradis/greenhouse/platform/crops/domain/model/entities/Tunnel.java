@@ -1,6 +1,7 @@
 package com.integradis.greenhouse.platform.crops.domain.model.entities;
 
 import com.integradis.greenhouse.platform.crops.domain.model.aggregates.Crop;
+import com.integradis.greenhouse.platform.crops.domain.model.valueobjects.CropPhase;
 import com.integradis.greenhouse.platform.shared.domain.model.entities.AuditableModel;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -8,14 +9,7 @@ import lombok.Getter;
 import java.util.Date;
 
 @Entity
-public class Tunnel extends AuditableModel {
-    @Id
-    @Getter
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private int day;
-    private Date date;
-    private Date time;
+public class Tunnel extends CropEntry {
     private int thermocoupleOne;
     private int thermocoupleTwo;
     private int thermocoupleThree;
@@ -26,16 +20,12 @@ public class Tunnel extends AuditableModel {
     private int recirculation;
     private String comment;
 
-    @Getter
-    @ManyToOne
-    @JoinColumn(name = "crop_id")
-    private Crop crop;
-
     public Tunnel() {
-
+        this.cropPhase = CropPhase.TUNNEL;
     }
 
-    public Tunnel(Crop crop) {
-        this.crop = crop;
+    public Tunnel(String author, Long nextItemId) {
+        super(author, nextItemId);
+        this.cropPhase = CropPhase.TUNNEL;
     }
 }

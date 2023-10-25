@@ -1,20 +1,11 @@
 package com.integradis.greenhouse.platform.crops.domain.model.entities;
 
-import com.integradis.greenhouse.platform.crops.domain.model.aggregates.Crop;
+import com.integradis.greenhouse.platform.crops.domain.model.valueobjects.CropPhase;
 import jakarta.persistence.*;
-import lombok.Getter;
 
-import java.util.Date;
 
 @Entity
-public class GrowRoomRecord {
-    @Id
-    @Getter
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private int day;
-    private Date date;
-    private Date time;
+public class GrowRoomRecord extends CropEntry {
     private int grow_room;
     private float air_temperature;
     private String compost_temperature;
@@ -23,17 +14,16 @@ public class GrowRoomRecord {
     private float setting;
     private String comment;
 
-    @Getter
-    @ManyToOne
-    @JoinColumn(name = "crop_id")
-    private Crop crop;
-
-    public GrowRoomRecord(){
-
+    public GrowRoomRecord(CropPhase phase){
+        this.cropPhase = phase;
     }
 
-    public GrowRoomRecord(Crop crop){
-        this.crop = crop;
+    public GrowRoomRecord(String author, Long nextItemId, CropPhase phase){
+        super(author, nextItemId);
+        this.cropPhase = phase;
     }
 
+    public GrowRoomRecord() {
+
+    }
 }
