@@ -23,4 +23,12 @@ public class PreparationArea {
     @ManyToOne
     @JoinColumn(name = "crop_id")
     private Crop crop;
+
+    public PreparationArea() {
+
+    }
+
+    public PreparationArea(Crop crop){
+        this.crop = crop;
+    }
 }

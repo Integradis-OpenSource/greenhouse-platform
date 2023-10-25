@@ -30,4 +30,12 @@ public class Tunnel extends AuditableModel {
     @ManyToOne
     @JoinColumn(name = "crop_id")
     private Crop crop;
+
+    public Tunnel() {
+
+    }
+
+    public Tunnel(Crop crop) {
+        this.crop = crop;
+    }
 }

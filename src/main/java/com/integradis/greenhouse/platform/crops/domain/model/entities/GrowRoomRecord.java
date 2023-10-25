@@ -15,17 +15,25 @@ public class GrowRoomRecord {
     private int day;
     private Date date;
     private Date time;
-    private int hay;
-    private int corn;
-    private int guano;
-    private float cottonSeedCake;
-    private int soybeanMeal;
-    private float gypsum;
-    private int urea;
-    private int ammoniumSulphate;
+    private int grow_room;
+    private float air_temperature;
+    private String compost_temperature;
+    private int carbon_dioxide;
+    private int air_humidity;
+    private float setting;
+    private String comment;
 
     @Getter
     @ManyToOne
     @JoinColumn(name = "crop_id")
     private Crop crop;
+
+    public GrowRoomRecord(){
+
+    }
+
+    public GrowRoomRecord(Crop crop){
+        this.crop = crop;
+    }
+
 }

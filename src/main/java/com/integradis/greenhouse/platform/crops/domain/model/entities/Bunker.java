@@ -26,4 +26,11 @@ public class Bunker {
     @ManyToOne
     @JoinColumn(name = "crop_id")
     private Crop crop;
+
+    public Bunker() {
+
+    }
+    public Bunker(Crop crop){
+        this.crop = crop;
+    }
 }

@@ -28,4 +28,12 @@ public class Formula {
     @ManyToOne
     @JoinColumn(name = "crop_id")
     private Crop crop;
+
+    public Formula(Crop crop){
+        this.crop = crop;
+    }
+
+    public Formula(){
+
+    }
 }
