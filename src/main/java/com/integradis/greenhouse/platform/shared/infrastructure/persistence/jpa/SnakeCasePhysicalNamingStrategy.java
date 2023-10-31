@@ -1,4 +1,4 @@
-package com.integradis.greenhouse.platform.shared.domain.infrastructure.persistance.jpa;
+package com.integradis.greenhouse.platform.shared.infrastructure.persistence.jpa;
 
 import org.hibernate.boot.model.naming.Identifier;
 import org.hibernate.boot.model.naming.PhysicalNamingStrategy;
