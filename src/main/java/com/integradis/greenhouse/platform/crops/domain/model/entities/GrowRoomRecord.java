@@ -1,31 +1,43 @@
 package com.integradis.greenhouse.platform.crops.domain.model.entities;
 
 import com.integradis.greenhouse.platform.crops.domain.model.aggregates.Crop;
+import com.integradis.greenhouse.platform.crops.domain.model.valueobjects.CropPhase;
 import jakarta.persistence.*;
 import lombok.Getter;
 
-import java.util.Date;
 
 @Entity
-public class GrowRoomRecord {
-    @Id
+public class GrowRoomRecord extends CropEntry {
     @Getter
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private int day;
-    private Date date;
-    private Date time;
-    private int hay;
-    private int corn;
-    private int guano;
-    private float cottonSeedCake;
-    private int soybeanMeal;
-    private float gypsum;
-    private int urea;
-    private int ammoniumSulphate;
+    private int grow_room;
+    @Getter
+    private float air_temperature;
+    @Getter
+    private String compost_temperature;
+    @Getter
+    private int carbon_dioxide;
+    @Getter
+    private int air_humidity;
+    @Getter
+    private float setting;
+    @Getter
+    private String comment;
 
-    @Getter
-    @ManyToOne
-    @JoinColumn(name = "crop_id")
-    private Crop crop;
+
+    public GrowRoomRecord(Crop crop, String author, CropPhase phase,
+                          int grow_room, float air_temperature, String compost_temperature, int carbon_dioxide,
+                          int air_humidity, float setting, String comment){
+        super(author, null, crop);
+        this.cropPhase = phase;
+        this.grow_room = grow_room;
+        this.air_temperature = air_temperature;
+        this.compost_temperature = compost_temperature;
+        this.carbon_dioxide = carbon_dioxide;
+        this.air_humidity = air_humidity;
+        this.setting = setting;
+        this.comment = comment;
+    }
+
+    public GrowRoomRecord() {
+    }
 }
