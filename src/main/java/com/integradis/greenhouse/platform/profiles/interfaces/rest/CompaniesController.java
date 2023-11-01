@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping(value = "/api/v1/companies", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Companies", description = "Companies Management Endpoints")

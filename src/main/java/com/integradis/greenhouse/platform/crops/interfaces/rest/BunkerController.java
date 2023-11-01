@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/api/v1/bunker")
 @Tag(name = "Bunker", description = "Bunker Management Endpoints")
