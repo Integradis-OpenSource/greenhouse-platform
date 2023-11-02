@@ -17,19 +17,19 @@ import java.util.List;
 
 @CrossOrigin(origins="*")
 @RestController
-@RequestMapping("/api/v1/formula")
-@Tag(name = "Formula", description = "Formula Management Endpoints")
-public class FormulaController {
+@RequestMapping("/api/v1/crops/{cropId}/formulas")
+@Tag(name = "Crops")
+public class CropFormulasController {
 
     private final FormulaQueryService formulaQueryService;
     private final FormulaCommandService formulaCommandService;
 
-    public FormulaController(FormulaQueryService formulaQueryService, FormulaCommandService formulaCommandService) {
+    public CropFormulasController(FormulaQueryService formulaQueryService, FormulaCommandService formulaCommandService) {
         this.formulaQueryService = formulaQueryService;
         this.formulaCommandService = formulaCommandService;
     }
 
-    @GetMapping("/{cropId}")
+    @GetMapping
     public ResponseEntity<List<FormulaResource>> getFormulaEntriesByCropId(@PathVariable Long cropId){
         var getFormulaEntriesByCropId = new GetFormulaEntriesByCropId(cropId);
         var entries = formulaQueryService.handle(getFormulaEntriesByCropId);
@@ -39,8 +39,8 @@ public class FormulaController {
     }
 
     @PostMapping
-    public ResponseEntity<FormulaResource> createFormula(@RequestBody CreateFormulaResource resource){
-        var createFormulaCommand = CreateFormulaCommandFromResourceAssembler.toCommandFromResource(resource);
+    public ResponseEntity<FormulaResource> createFormula(@PathVariable Long cropId, @RequestBody CreateFormulaResource resource){
+        var createFormulaCommand = CreateFormulaCommandFromResourceAssembler.toCommandFromResource(resource, cropId);
         var formulaId = formulaCommandService.handle(createFormulaCommand);
         if (formulaId == 0L){
             return ResponseEntity.badRequest().build();

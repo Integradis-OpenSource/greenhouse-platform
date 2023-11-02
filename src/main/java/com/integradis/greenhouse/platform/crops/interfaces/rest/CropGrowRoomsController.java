@@ -17,19 +17,19 @@ import java.util.List;
 
 @CrossOrigin(origins="*")
 @RestController
-@RequestMapping("/api/v1/grow-room")
-@Tag(name = "Grow Room", description = "Grow Room Management Endpoints")
-public class GrowRoomController {
+@RequestMapping("/api/v1/crops/{cropId}/grow-rooms/{cropPhase}")
+@Tag(name = "Crops")
+public class CropGrowRoomsController {
     private final GrowRoomCommandService growRoomCommandService;
     private final GrowRoomQueryService growRoomQueryService;
 
-    public GrowRoomController(GrowRoomCommandService growRoomCommandService, GrowRoomQueryService growRoomQueryService) {
+    public CropGrowRoomsController(GrowRoomCommandService growRoomCommandService, GrowRoomQueryService growRoomQueryService) {
         this.growRoomCommandService = growRoomCommandService;
         this.growRoomQueryService = growRoomQueryService;
     }
 
 
-    @GetMapping("/{cropId}/{cropPhase}")
+    @GetMapping
     public ResponseEntity<List<GrowRoomResource>> getGrowRoomEntriesByCropIdAndCropPhase(@PathVariable Long cropId, @PathVariable CropPhase cropPhase) {
         var getGrowRoomEntriesByCropIdAndCropPhase = new GetGrowRoomByCropIdAndCropPhase(cropId, cropPhase);
         var entries = growRoomQueryService.handle(getGrowRoomEntriesByCropIdAndCropPhase);
@@ -39,8 +39,8 @@ public class GrowRoomController {
     }
 
     @PostMapping
-    public ResponseEntity<GrowRoomResource> createGrowRoom(@RequestBody CreateGrowRoomResource resource){
-        var createGrowRoomCommand = CreateGrowRoomCommandFromResourceAssembler.toCommandFromResource(resource);
+    public ResponseEntity<GrowRoomResource> createGrowRoom(@PathVariable Long cropId, @PathVariable CropPhase cropPhase, @RequestBody CreateGrowRoomResource resource){
+        var createGrowRoomCommand = CreateGrowRoomCommandFromResourceAssembler.toCommandFromResource(resource, cropId, cropPhase);
         var growRoomId = growRoomCommandService.handle(createGrowRoomCommand);
         if (growRoomId == 0L){
             return ResponseEntity.badRequest().build();

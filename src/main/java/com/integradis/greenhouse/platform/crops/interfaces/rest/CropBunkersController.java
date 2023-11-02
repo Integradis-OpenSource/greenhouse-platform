@@ -16,18 +16,18 @@ import java.util.List;
 
 @CrossOrigin(origins="*")
 @RestController
-@RequestMapping("/api/v1/bunker")
-@Tag(name = "Bunker", description = "Bunker Management Endpoints")
-public class BunkerController {
+@RequestMapping("/api/v1/crops/{cropId}/bunker")
+@Tag(name = "Crops")
+public class CropBunkersController {
     private final BunkerQueryService bunkerQueryService;
     private final BunkerCommandService bunkerCommandService;
 
-    public BunkerController(BunkerQueryService bunkerQueryService, BunkerCommandService bunkerCommandService) {
+    public CropBunkersController(BunkerQueryService bunkerQueryService, BunkerCommandService bunkerCommandService) {
         this.bunkerQueryService = bunkerQueryService;
         this.bunkerCommandService = bunkerCommandService;
     }
 
-    @GetMapping("/{cropId}/bunker")
+    @GetMapping
     public ResponseEntity<List<BunkerResource>> getBunkerEntriesByCropId(@PathVariable Long cropId){
         var getBunkerEntriesByCropId = new GetBunkerEntriesByCropIdQuery(cropId);
         var entries = bunkerQueryService.handle(getBunkerEntriesByCropId);
@@ -37,8 +37,8 @@ public class BunkerController {
     }
 
     @PostMapping
-    public ResponseEntity<BunkerResource> createBunker(@RequestBody CreateBunkerResource resource){
-        var createBunkerCommand = CreateBunkerCommandFromResourceAssembler.toCommandFromResource(resource);
+    public ResponseEntity<BunkerResource> createBunker(@PathVariable Long cropId, @RequestBody CreateBunkerResource resource){
+        var createBunkerCommand = CreateBunkerCommandFromResourceAssembler.toCommandFromResource(resource, cropId);
         var bunkerId = bunkerCommandService.handle(createBunkerCommand);
         if (bunkerId == 0L){
             return ResponseEntity.badRequest().build();

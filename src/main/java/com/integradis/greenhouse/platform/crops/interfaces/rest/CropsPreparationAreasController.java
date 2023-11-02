@@ -16,20 +16,20 @@ import java.util.List;
 
 @CrossOrigin(origins="*")
 @RestController
-@RequestMapping("/api/v1/preparationArea")
-@Tag(name = "Preparation Area", description = "Preparation Area Management Endpoints")
-public class PreparationAreaController {
+@RequestMapping("/api/v1/crops/{cropId}/preparation-areas")
+@Tag(name = "Crops")
+public class CropsPreparationAreasController {
 
     private final PreparationAreaQueryService preparationAreaQueryService;
     private final PreparationAreaCommandService preparationAreaCommandService;
 
-    public PreparationAreaController(PreparationAreaQueryService preparationAreaQueryService, PreparationAreaCommandService preparationAreaCommandService) {
+    public CropsPreparationAreasController(PreparationAreaQueryService preparationAreaQueryService, PreparationAreaCommandService preparationAreaCommandService) {
         this.preparationAreaQueryService = preparationAreaQueryService;
         this.preparationAreaCommandService = preparationAreaCommandService;
     }
 
 
-    @GetMapping("/{cropId}")
+    @GetMapping
     public ResponseEntity<List<PreparationAreaResource>> getPreparationAreaEntriesByCropId(@PathVariable Long cropId){
         var getPreparationAreaEntriesByCropId = new GetPreparationAreaEntriesByCropIdQuery(cropId);
         var entries = preparationAreaQueryService.handle(getPreparationAreaEntriesByCropId);
@@ -39,8 +39,8 @@ public class PreparationAreaController {
     }
 
     @PostMapping
-    public ResponseEntity<PreparationAreaResource> createPreparationArea(@RequestBody CreatePreparationAreaResource resource){
-        var createPreparationAreaCommand = CreatePreparationAreaCommandFromResourceAssembler.toCommandFromResource(resource);
+    public ResponseEntity<PreparationAreaResource> createPreparationArea(@PathVariable Long cropId, @RequestBody CreatePreparationAreaResource resource){
+        var createPreparationAreaCommand = CreatePreparationAreaCommandFromResourceAssembler.toCommandFromResource(resource, cropId);
         var preparationAreaId = preparationAreaCommandService.handle(createPreparationAreaCommand);
         if (preparationAreaId == 0L){
             return ResponseEntity.badRequest().build();
