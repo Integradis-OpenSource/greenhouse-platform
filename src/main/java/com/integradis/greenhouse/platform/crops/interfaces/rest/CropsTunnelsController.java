@@ -16,18 +16,18 @@ import java.util.List;
 
 @CrossOrigin(origins="*")
 @RestController
-@RequestMapping("/api/v1/tunnel")
-@Tag(name = "Tunnel", description = "Tunnel Management Endpoints")
-public class TunnelController {
+@RequestMapping("/api/v1/crops/{cropId}/tunnels")
+@Tag(name = "Crops")
+public class CropsTunnelsController {
     private final TunnelQueryService tunnelQueryService;
     private final TunnelCommandService tunnelCommandService;
 
-    public TunnelController(TunnelQueryService tunnelQueryService, TunnelCommandService tunnelCommandService) {
+    public CropsTunnelsController(TunnelQueryService tunnelQueryService, TunnelCommandService tunnelCommandService) {
         this.tunnelQueryService = tunnelQueryService;
         this.tunnelCommandService = tunnelCommandService;
     }
 
-    @GetMapping("{cropId}")
+    @GetMapping
     public ResponseEntity<List<TunnelResource>> getTunnelEntriesByCropId(@PathVariable Long cropId){
         var getTunnelEntriesByCropId = new GetTunnelEntriesByCropIdQuery(cropId);
         var entries = tunnelQueryService.handle(getTunnelEntriesByCropId);
@@ -37,8 +37,8 @@ public class TunnelController {
     }
 
     @PostMapping
-    public ResponseEntity<TunnelResource> createTunnel(@RequestBody CreateTunnelResource resource){
-        var createTunnelCommand = CreateTunnelCommandFromResourceAssembler.toCommandFromResource(resource);
+    public ResponseEntity<TunnelResource> createTunnel(@PathVariable Long cropId, @RequestBody CreateTunnelResource resource){
+        var createTunnelCommand = CreateTunnelCommandFromResourceAssembler.toCommandFromResource(resource, cropId);
         var tunnelId = tunnelCommandService.handle(createTunnelCommand);
         if (tunnelId == 0L){
             return ResponseEntity.badRequest().build();

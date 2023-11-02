@@ -19,11 +19,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/crops")
 @Tag(name = "Crops", description = "Crop Management Endpoints")
-public class CropController {
+public class CropsController {
     private final CropCommandService cropCommandService;
     private final CropQueryService cropQueryService;
 
-    public CropController(CropCommandService cropCommandService, CropQueryService cropQueryService) {
+    public CropsController(CropCommandService cropCommandService, CropQueryService cropQueryService) {
         this.cropCommandService = cropCommandService;
         this.cropQueryService = cropQueryService;
     }

@@ -4,8 +4,8 @@ import com.integradis.greenhouse.platform.crops.domain.model.commands.CreateBunk
 import com.integradis.greenhouse.platform.crops.interfaces.rest.resources.CreateBunkerResource;
 
 public class CreateBunkerCommandFromResourceAssembler {
-    public static CreateBunkerCommand toCommandFromResource(CreateBunkerResource resource){
-        return new CreateBunkerCommand(resource.cropId(), resource.author(), resource.thermocoupleOne(),
+    public static CreateBunkerCommand toCommandFromResource(CreateBunkerResource resource, Long cropId){
+        return new CreateBunkerCommand(cropId, resource.author(), resource.thermocoupleOne(),
                 resource.thermocoupleTwo(), resource.thermocoupleThree(), resource.averageThermocouple(),
                 resource.motorFrequency(), resource.comment());
     }

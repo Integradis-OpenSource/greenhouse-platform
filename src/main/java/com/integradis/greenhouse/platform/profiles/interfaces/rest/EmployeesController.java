@@ -20,11 +20,11 @@ import java.util.List;
 @RestController
 @RequestMapping(value ="/api/v1/employees", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Employees", description = "Employees Management Endpoints")
-public class EmployeeController {
+public class EmployeesController {
     private final EmployeeQueryService employeeQueryService;
     private final EmployeeCommandService employeeCommandService;
 
-    public EmployeeController(EmployeeQueryService employeeQueryService, EmployeeCommandService employeeCommandService) {
+    public EmployeesController(EmployeeQueryService employeeQueryService, EmployeeCommandService employeeCommandService) {
         this.employeeQueryService = employeeQueryService;
         this.employeeCommandService = employeeCommandService;
     }

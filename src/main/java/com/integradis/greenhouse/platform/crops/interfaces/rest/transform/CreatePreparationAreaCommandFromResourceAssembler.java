@@ -4,8 +4,8 @@ import com.integradis.greenhouse.platform.crops.domain.model.commands.CreatePrep
 import com.integradis.greenhouse.platform.crops.interfaces.rest.resources.CreatePreparationAreaResource;
 
 public class CreatePreparationAreaCommandFromResourceAssembler {
-    public static CreatePreparationAreaCommand toCommandFromResource(CreatePreparationAreaResource resource){
-        return new CreatePreparationAreaCommand(resource.cropId(), resource.author(), resource.activities(),
+    public static CreatePreparationAreaCommand toCommandFromResource(CreatePreparationAreaResource resource, Long cropId){
+        return new CreatePreparationAreaCommand(cropId, resource.author(), resource.activities(),
                 resource.temperature(), resource.comment());
     }
 }
