@@ -1,9 +1,9 @@
 package com.integradis.greenhouse.platform.iam.infrastructure.hashing.bcrypt.services;
 
-import com.integradis.greenhouse.platform.iam.application.internal.outboundservices.hashing.HashingService;
+import com.integradis.greenhouse.platform.iam.infrastructure.hashing.bcrypt.BCryptHashingService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-public class HashingServiceImpl implements HashingService {
+public class HashingServiceImpl implements BCryptHashingService {
     private final BCryptPasswordEncoder passwordEncoder;
 
     public HashingServiceImpl(BCryptPasswordEncoder passwordEncoder) {
@@ -13,5 +13,10 @@ public class HashingServiceImpl implements HashingService {
     @Override
     public String encode(CharSequence rawPassword) {
         return passwordEncoder.encode(rawPassword);
+    }
+
+    @Override
+    public boolean matches(CharSequence rawPassword, String encodedPassword) {
+        return passwordEncoder.matches(rawPassword, encodedPassword);
     }
 }
