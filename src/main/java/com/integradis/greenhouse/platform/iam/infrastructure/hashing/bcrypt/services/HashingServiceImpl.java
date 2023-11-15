@@ -2,12 +2,14 @@ package com.integradis.greenhouse.platform.iam.infrastructure.hashing.bcrypt.ser
 
 import com.integradis.greenhouse.platform.iam.infrastructure.hashing.bcrypt.BCryptHashingService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
+@Service
 public class HashingServiceImpl implements BCryptHashingService {
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public HashingServiceImpl(BCryptPasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
+    public HashingServiceImpl() {
+        this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
     @Override
