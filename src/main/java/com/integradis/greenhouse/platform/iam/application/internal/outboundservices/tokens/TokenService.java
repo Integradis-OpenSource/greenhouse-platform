@@ -3,7 +3,7 @@ package com.integradis.greenhouse.platform.iam.application.internal.outboundserv
 import org.springframework.security.core.Authentication;
 
 public interface TokenService {
-    String generateToken(Authentication authentication);
+    String generateToken(String username);
     String getUsernameFromToken(String token);
     boolean validateToken(String token);
 }
