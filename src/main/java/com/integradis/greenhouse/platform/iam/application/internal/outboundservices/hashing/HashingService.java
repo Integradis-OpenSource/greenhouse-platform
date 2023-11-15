@@ -2,4 +2,6 @@ package com.integradis.greenhouse.platform.iam.application.internal.outboundserv
 
 public interface HashingService {
     String encode(CharSequence rawPassword);
+
+    boolean matches(CharSequence rawPassword, String encodedPassword);
 }
