@@ -46,7 +46,7 @@ public class User extends AbstractAggregateRoot<User> {
     @LastModifiedDate
     @Column(nullable = false)
     private Date updatedAt;
-    
+
     public User() {
         roles = new HashSet<>();
     }
