@@ -15,7 +15,7 @@ public class CorsConfiguration {
                 registry.addMapping("/**")
                         .allowedMethods("*")
                         .allowedHeaders("*")
-                        .allowedOrigins("*");
+                        .allowedOrigins("http://localhost:4200", "https://greenhouse-open.netlify.app/");
             }
         };
     }
