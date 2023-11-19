@@ -8,7 +8,7 @@ public record FormulaResource(
         String author,
         String day,
         LocalDate date,
-        LocalTime time,
+        String time,
         int hay,
         int corn,
         int guano,

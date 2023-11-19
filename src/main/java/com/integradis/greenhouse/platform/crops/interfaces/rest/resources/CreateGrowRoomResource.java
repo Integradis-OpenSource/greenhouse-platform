@@ -7,7 +7,7 @@ public record CreateGrowRoomResource(
         String author,
         String day,
         LocalDate date,
-        LocalTime time,
+        String time,
         int grow_room,
         int air_temperature,
         String compost_temperature,

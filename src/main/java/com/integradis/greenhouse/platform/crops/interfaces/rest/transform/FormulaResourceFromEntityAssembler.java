@@ -6,7 +6,7 @@ import com.integradis.greenhouse.platform.crops.interfaces.rest.resources.Formul
 public class FormulaResourceFromEntityAssembler {
     public static FormulaResource toResourceFromEntity(Formula entity){
         return new FormulaResource(entity.getId(), entity.getAuthor(), entity.getDay(), entity.getDate(),
-                entity.getTime(), entity.getHay(), entity.getCorn(),
+                entity.getFormattedTime(), entity.getHay(), entity.getCorn(),
                 entity.getGuano(), entity.getCottonSeedCake(), entity.getSoybeanMeal(), entity.getGypsum(),
                 entity.getUrea(), entity.getAmmoniumSulphate());
     }

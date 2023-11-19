@@ -8,7 +8,7 @@ public record TunnelResource(
         String author,
         String day,
         LocalDate date,
-        LocalTime time,
+        String time,
         int thermocoupleOne,
         int thermocoupleTwo,
         int thermocoupleThree,

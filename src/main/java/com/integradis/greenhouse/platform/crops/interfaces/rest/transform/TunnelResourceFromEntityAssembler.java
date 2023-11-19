@@ -6,7 +6,7 @@ import com.integradis.greenhouse.platform.crops.interfaces.rest.resources.Tunnel
 public class TunnelResourceFromEntityAssembler {
     public static TunnelResource toResourceFromEntity(Tunnel entity){
         return new TunnelResource(entity.getId(), entity.getAuthor(), entity.getDay(), entity.getDate(),
-                entity.getTime(),entity.getThermocoupleOne(), entity.getThermocoupleTwo(),
+                entity.getFormattedTime(),entity.getThermocoupleOne(), entity.getThermocoupleTwo(),
                 entity.getThermocoupleThree(), entity.getAverageThermocouple(), entity.getMotorFrequency(),
                 entity.getRoomTemperature(), entity.getFreshAir(), entity.getRecirculation(), entity.getComment());
     }

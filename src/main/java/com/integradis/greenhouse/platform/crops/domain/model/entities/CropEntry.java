@@ -69,6 +69,8 @@ public class CropEntry {
         return this.cropPhase.toString().toLowerCase();
     }
 
+    public String getFormattedTime() { return this.time.toString(); }
+
     public void updateNextItemId(Long nextItemId){
         this.nextItemId = nextItemId;
     }

@@ -8,7 +8,7 @@ public record PreparationAreaResource(
         String author,
         String day,
         LocalDate date,
-        LocalTime time,
+        String time,
         int activities,
         int temperature,
         String comment

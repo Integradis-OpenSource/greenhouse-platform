@@ -6,7 +6,7 @@ import com.integradis.greenhouse.platform.crops.interfaces.rest.resources.GrowRo
 public class GrowRoomResourceFromEntityAssembler {
     public static GrowRoomResource toResourceFromEntity(GrowRoomRecord entity){
         return new GrowRoomResource(entity.getId(), entity.getAuthor(), entity.getDay(), entity.getDate(),
-                entity.getTime(), entity.getFormattedCropPhase(),
+                entity.getFormattedTime(), entity.getFormattedCropPhase(),
                 entity.getGrow_room(), entity.getAir_temperature(), entity.getCompost_temperature(),
                 entity.getCarbon_dioxide(), entity.getAir_humidity(), entity.getSetting(), entity.getComment());
 

@@ -8,7 +8,7 @@ public record GrowRoomResource(
         String author,
         String day,
         LocalDate date,
-        LocalTime time,
+        String time,
         String cropPhase,
         int growRoom,
         float airTemperature,
