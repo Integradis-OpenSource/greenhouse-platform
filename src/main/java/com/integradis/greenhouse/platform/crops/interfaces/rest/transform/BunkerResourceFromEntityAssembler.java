@@ -5,7 +5,9 @@ import com.integradis.greenhouse.platform.crops.interfaces.rest.resources.Bunker
 
 public class BunkerResourceFromEntityAssembler {
     public static BunkerResource toResourceFromEntity(Bunker entity){
-        return new BunkerResource(entity.getId(), entity.getAuthor(), entity.getThermocoupleOne(), entity.getThermocoupleTwo(),
-                entity.getThermocoupleThree(), entity.getAverageThermocouple(), entity.getMotorFrequency(), entity.getComment());
+        return new BunkerResource(entity.getId(), entity.getAuthor(), entity.getDay(), entity.getDate(),
+                entity.getTime(), entity.getThermocoupleOne(), entity.getThermocoupleTwo(),
+                entity.getThermocoupleThree(), entity.getAverageThermocouple(), entity.getMotorFrequency(),
+                entity.getComment());
     }
 }

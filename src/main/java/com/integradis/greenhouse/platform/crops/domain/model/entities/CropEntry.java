@@ -8,6 +8,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
@@ -18,9 +19,15 @@ public class CropEntry {
     @Getter
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
+
+    @Getter
     private String day;
+
+    @Getter
     private LocalDate date;
-    private LocalDate time;
+
+    @Getter
+    private LocalTime time;
 
     @Getter
     private String author;
@@ -45,6 +52,7 @@ public class CropEntry {
     public CropEntry(){
         this.date = LocalDate.now();
         this.day = date.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+        this.time = LocalTime.now();
         this.nextItemId = null;
     }
 
@@ -54,6 +62,7 @@ public class CropEntry {
         this.nextItemId = nextItemId;
         this.crop = crop;
         this.day = date.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+        this.time = LocalTime.now();
     }
 
     public String getFormattedCropPhase(){

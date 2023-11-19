@@ -61,6 +61,7 @@ public class Crop extends AbstractAggregateRoot<Crop> {
 
     public void complete(){
         this.state = false;
+        this.endDate = new Date();
     }
 
     public boolean isActive(){
