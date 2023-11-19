@@ -24,7 +24,8 @@ public class BunkerCommandServiceImpl implements BunkerCommandService {
     public Long handle(CreateBunkerCommand command) {
         var getCropByIdQuery = new GetCropByIdQuery(command.cropId());
         var crop = cropRepository.findById(getCropByIdQuery.id()).orElseThrow(() -> new CropNotFoundException(command.cropId()));
-        var bunker = new Bunker(crop, command.author(), command.thermocoupleOne(), command.thermocoupleTwo(), command.thermocoupleThree(), command.averageThermocouple(), command.motorFrequency(), command.comment());
+        var bunker = new Bunker(crop, command.author(), command.thermocoupleOne(), command.thermocoupleTwo(),
+                command.thermocoupleThree(), command.motorFrequency(), command.comment());
         bunkerRepository.save(bunker);
         return bunker.getId();
     }

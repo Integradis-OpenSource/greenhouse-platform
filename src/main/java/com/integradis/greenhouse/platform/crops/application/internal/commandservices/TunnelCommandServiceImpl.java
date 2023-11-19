@@ -24,7 +24,9 @@ public class TunnelCommandServiceImpl implements TunnelCommandService {
     public Long handle(CreateTunnelCommand command) {
         var getCropByIdQuery = new GetCropByIdQuery(command.cropId());
         var crop = cropRepository.findById(getCropByIdQuery.id()).orElseThrow(() -> new CropNotFoundException(command.cropId()));
-        var tunnel = new Tunnel(crop, command.author(), command.thermocoupleOne(), command.thermocoupleTwo(), command.thermocoupleThree(), command.averageThermocouple(), command.motorFrequency(), command.roomTemperature(), command.freshAir(), command.recirculation(), command.comment());
+        var tunnel = new Tunnel(crop, command.author(), command.thermocoupleOne(), command.thermocoupleTwo(),
+                command.thermocoupleThree(), command.motorFrequency(), command.roomTemperature(), command.freshAir(),
+                command.recirculation(), command.comment());
         tunnelRepository.save(tunnel);
         return tunnel.getId();
     }
