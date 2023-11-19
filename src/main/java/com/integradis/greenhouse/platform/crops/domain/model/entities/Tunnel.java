@@ -34,18 +34,22 @@ public class Tunnel extends CropEntry {
     }
 
     public Tunnel(Crop crop, String author, int thermocoupleOne, int thermocoupleTwo, int thermocoupleThree,
-                  float averageThermocouple, int motorFrequency, float roomTemperature, int freshAir, int recirculation,
+                  int motorFrequency, float roomTemperature, int freshAir, int recirculation,
                   String comment) {
         super(author, null, crop);
         this.cropPhase = CropPhase.TUNNEL;
         this.thermocoupleOne = thermocoupleOne;
         this.thermocoupleTwo = thermocoupleTwo;
         this.thermocoupleThree = thermocoupleThree;
-        this.averageThermocouple = averageThermocouple;
+        this.averageThermocouple = calculateAverageThermocouple();
         this.motorFrequency = motorFrequency;
         this.roomTemperature = roomTemperature;
         this.freshAir = freshAir;
         this.recirculation = recirculation;
         this.comment = comment;
+    }
+
+    public float calculateAverageThermocouple() {
+        return (float) (this.thermocoupleOne + this.thermocoupleTwo + this.thermocoupleThree) /3;
     }
 }

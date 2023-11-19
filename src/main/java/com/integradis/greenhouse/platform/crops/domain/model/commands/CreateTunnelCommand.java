@@ -6,7 +6,6 @@ public record CreateTunnelCommand(
         int thermocoupleOne,
         int thermocoupleTwo,
         int thermocoupleThree,
-        float averageThermocouple,
         int motorFrequency,
         float roomTemperature,
         int freshAir,
