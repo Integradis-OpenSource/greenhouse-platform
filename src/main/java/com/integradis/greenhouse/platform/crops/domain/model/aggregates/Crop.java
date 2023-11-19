@@ -68,6 +68,14 @@ public class Crop extends AbstractAggregateRoot<Crop> {
     }
 
     public void endPhase() {
-        if (this.cropPhase.next().isEmpty()) this.complete();
+        int index = this.cropPhase.ordinal();
+        if (index == 7){
+            this.complete();
+        }
+        else {
+            int nextIndex = index + 1;
+            CropPhase[] cropPhases = CropPhase.values();
+            this.cropPhase = cropPhases[nextIndex];
+        }
     }
 }

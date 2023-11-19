@@ -1,8 +1,10 @@
 package com.integradis.greenhouse.platform.crops.application.internal.commandservices;
 
 import com.integradis.greenhouse.platform.crops.application.internal.outboundservices.acl.ExternalCompanyService;
+import com.integradis.greenhouse.platform.crops.domain.exceptions.CropNotFoundException;
 import com.integradis.greenhouse.platform.crops.domain.model.aggregates.Crop;
 import com.integradis.greenhouse.platform.crops.domain.model.commands.CreateCropCommand;
+import com.integradis.greenhouse.platform.crops.domain.model.commands.EndCropPhaseCommand;
 import com.integradis.greenhouse.platform.crops.domain.services.CropCommandService;
 import com.integradis.greenhouse.platform.crops.infrastructure.persistence.jpa.repositories.CropRepository;
 import com.integradis.greenhouse.platform.profiles.domain.exceptions.CompanyNotFoundException;
@@ -28,6 +30,17 @@ public class CropCommandServiceImpl implements CropCommandService {
         Crop crop = new Crop(company);
         cropRepository.save(crop);
         return crop.getId();
+    }
+
+    @Override
+    public Long handle(EndCropPhaseCommand command) {
+        cropRepository.findById(command.cropId())
+                .map(crop -> {
+                    crop.endPhase();
+                    cropRepository.save(crop);
+                    return crop.getId();
+                }).orElseThrow(() -> new CropNotFoundException(command.cropId()));
+        return null;
     }
 
 }
