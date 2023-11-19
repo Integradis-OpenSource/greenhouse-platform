@@ -1,5 +1,6 @@
 package com.integradis.greenhouse.platform.crops.interfaces.rest;
 
+import com.integradis.greenhouse.platform.crops.domain.model.commands.EndCropPhaseCommand;
 import com.integradis.greenhouse.platform.crops.domain.model.queries.GetCropByIdQuery;
 import com.integradis.greenhouse.platform.crops.domain.model.queries.GetCropsByCompanyId;
 import com.integradis.greenhouse.platform.crops.domain.services.CropCommandService;
@@ -61,5 +62,12 @@ public class CropsController {
         }
         var cropResource = CropResourceFromEntityAssembler.toResourceFromEntity(crop.get());
         return new ResponseEntity<>(cropResource, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/{cropId}/end_phase")
+    public ResponseEntity<?> endCropPhase(@PathVariable Long cropId){
+        var endCropPhaseCommand = new EndCropPhaseCommand(cropId);
+        var cropWithPhaseEnded = cropCommandService.handle(endCropPhaseCommand);
+        return ResponseEntity.ok(cropWithPhaseEnded);
     }
 }

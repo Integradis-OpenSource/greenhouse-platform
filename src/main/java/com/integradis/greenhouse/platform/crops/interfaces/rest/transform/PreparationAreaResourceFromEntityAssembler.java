@@ -5,6 +5,7 @@ import com.integradis.greenhouse.platform.crops.interfaces.rest.resources.Prepar
 
 public class PreparationAreaResourceFromEntityAssembler {
     public static PreparationAreaResource toResourceFromEntity(PreparationArea entity){
-        return new PreparationAreaResource(entity.getId(), entity.getAuthor(), entity.getActivities(), entity.getTemperature(), entity.getComment());
+        return new PreparationAreaResource(entity.getId(), entity.getAuthor(), entity.getDay(), entity.getDate(),
+                entity.getFormattedTime(), entity.getActivities(), entity.getTemperature(), entity.getComment());
     }
 }
