@@ -5,9 +5,6 @@ import java.time.LocalTime;
 
 public record CreatePreparationAreaResource(
         String author,
-        String day,
-        LocalDate date,
-        String time,
         int activities,
         int temperature,
         String comment

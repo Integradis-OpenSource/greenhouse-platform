@@ -5,14 +5,11 @@ import java.time.LocalTime;
 
 public record CreateGrowRoomResource(
         String author,
-        String day,
-        LocalDate date,
-        String time,
-        int grow_room,
-        int air_temperature,
-        String compost_temperature,
-        int carbon_dioxide,
-        int air_humidity,
+        int growRoom,
+        int airTemperature,
+        String compostTemperature,
+        int carbonDioxide,
+        int airHumidity,
         float setting,
         String comment
 ) {

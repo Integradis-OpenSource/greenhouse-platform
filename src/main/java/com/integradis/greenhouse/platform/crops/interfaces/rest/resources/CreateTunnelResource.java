@@ -5,13 +5,9 @@ import java.time.LocalTime;
 
 public record CreateTunnelResource(
         String author,
-        String day,
-        LocalDate date,
-        String time,
         int thermocoupleOne,
         int thermocoupleTwo,
         int thermocoupleThree,
-        float averageThermocouple,
         int motorFrequency,
         float roomTemperature,
         int freshAir,

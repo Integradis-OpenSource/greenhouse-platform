@@ -11,5 +11,4 @@ public enum CropPhase {
     CASING,
     INDUCTION,
     HARVEST;
-
 }

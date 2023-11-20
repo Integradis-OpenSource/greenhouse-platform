@@ -5,9 +5,6 @@ import java.time.LocalTime;
 
 public record CreateFormulaResource(
                                     String author,
-                                    String day,
-                                    LocalDate date,
-                                    String time,
                                     int hay,
                                     int corn,
                                     int guano,
