@@ -7,7 +7,7 @@ import com.integradis.greenhouse.platform.crops.interfaces.rest.resources.Create
 public class CreateGrowRoomCommandFromResourceAssembler {
     public static CreateGrowRoomCommand toCommandFromResource(CreateGrowRoomResource resource, Long cropId, CropPhase cropPhase){
         return new CreateGrowRoomCommand(cropId, resource.author(), cropPhase,
-                resource.grow_room(), resource.air_temperature(), resource.compost_temperature(),
-                resource.carbon_dioxide(), resource.air_humidity(), resource.setting(), resource.comment());
+                resource.growRoom(), resource.airTemperature(), resource.compostTemperature(),
+                resource.carbonDioxide(), resource.airHumidity(), resource.setting(), resource.comment());
     }
 }
