@@ -1,4 +1,4 @@
-package com.acme.greenhouse.platform;
+package com.integradis.greenhouse.platform;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
